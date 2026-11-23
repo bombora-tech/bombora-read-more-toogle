@@ -3,7 +3,7 @@
  * Plugin Name:       Bombora Read More Toggle
  * Plugin URI:        https://github.com/bombora-tech/bombora-read-more-toogle
  * Description:       Tag [read]...[/read] skryje obsažený text za tlačítko „Pokračovat“ (bez reloadu stránky). Funguje v obsahu příspěvků/produktů, krátkém popisu produktu i v popisu kategorií/taxonomií. Texty tlačítek jsou přeložené (CS, SK, DE, FR, NL, EN, RU) a lze je přepsat ve WPML String Translation.
- * Version:           1.1.0
+ * Version:           1.1.1
  * Requires at least: 6.5
  * Requires PHP:      8.0
  * Author:            Bombora group s.r.o.
@@ -18,22 +18,23 @@
 
 defined( 'ABSPATH' ) || exit;
 
-// Pojistka: stará verze (složka read-more-toggle) nebo druhá kopie už běží – nic znovu nedeklarovat.
+// Pojistka: druhá kopie, nebo stará verze (složka read-more-toggle, třída RMT_Read_More_Toggle) už běží.
+// Třída má jiný název než ve staré verzi, aby ji kontrola class_exists() nenašla dřív, než se sama deklaruje.
 if ( defined( 'BOMBORA_RMT_VERSION' ) || class_exists( 'RMT_Read_More_Toggle', false ) ) {
 	return;
 }
 
-define( 'BOMBORA_RMT_VERSION', '1.1.0' );
+define( 'BOMBORA_RMT_VERSION', '1.1.1' );
 
-final class RMT_Read_More_Toggle {
+final class Bombora_Read_More_Toggle {
 
 	private const WPML_CONTEXT = 'Read More Toggle';
 
-	private static ?RMT_Read_More_Toggle $instance = null;
+	private static ?Bombora_Read_More_Toggle $instance = null;
 	private int $counter     = 0;
 	private bool $used       = false;
 
-	public static function instance(): RMT_Read_More_Toggle {
+	public static function instance(): Bombora_Read_More_Toggle {
 		if ( null === self::$instance ) {
 			self::$instance = new self();
 		}
@@ -175,4 +176,4 @@ JS;
 	}
 }
 
-RMT_Read_More_Toggle::instance();
+Bombora_Read_More_Toggle::instance();
