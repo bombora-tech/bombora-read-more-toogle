@@ -1,5 +1,8 @@
 # Changelog – Bombora Read More Toggle
 
+## [1.1.2] – 2026-11-23
+- Bezpečnější souběh se starou složkou: když je stará verze ještě aktivní, nová kopie se nenačte (žádná kolize funkcí/tříd, běží stará verze, dokud převod nedokončí Bombora Manager).
+
 ## [1.1.1] – 2026-11-23
 - Opraveno: pojistka proti dvojímu načtení v 1.1.0 plugin vypnula hned při načtení (PHP deklaruje třídu dřív, než proběhne kontrola), takže tag [read] se nezpracoval. Třída se teď jmenuje `Bombora_Read_More_Toggle`.
 
